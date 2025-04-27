@@ -3,71 +3,213 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Tên ứng dụng khi Add to Home -->
-  <title>FreeFire ThanhDat</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="FreeFire ThanhDat">
-  <meta name="mobile-web-app-capable" content="yes">
-  
-  <!-- Icon App -->
-  <link rel="apple-touch-icon" sizes="180x180" href="freefire-icon.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="freefire-icon.png">
-
+  <title>Menu VIP PRO Red Neon Full</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
-      color: white;
+      background: linear-gradient(135deg, #2c0f0f, #5e0b0b);
       font-family: 'Poppins', sans-serif;
-      text-align: center;
-      background-image: url('freefire-background.jpg');
-      background-size: cover;
-      background-position: center;
+      overflow: hidden;
     }
 
-    .content {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px 30px;
+    .menu-box {
+      width: 320px;
+      height: 320px;
+      background: rgba(30, 0, 0, 0.7);
+      border: 3px solid;
+      border-image: linear-gradient(45deg, #ff0000, #ff6b6b) 1;
+      box-shadow: 0 0 30px #ff0000, 0 0 60px #ff6b6b;
       border-radius: 20px;
-      box-shadow: 0 0 20px #00f0ff;
+      backdrop-filter: blur(10px);
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      user-select: none;
+      cursor: move;
+      transition: box-shadow 0.3s;
     }
 
-    .content h1 {
-      font-size: 24px;
-      margin-bottom: 15px;
-      text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+    .menu-box h1 {
+      font-size: 22px;
+      color: #fff;
+      text-shadow: 0 0 15px #ff0000, 0 0 30px #ff6b6b;
+      margin: 0;
     }
 
-    .content a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #00f0ff;
-      color: #000;
-      text-decoration: none;
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      width: 100%;
+      padding: 20px 0;
+      gap: 10px;
+      scrollbar-width: none;
+    }
+    .carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .feature {
+      flex: 0 0 80%;
+      height: 80px;
+      background: linear-gradient(45deg, #ff0000, #ff6b6b);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: black;
+      font-size: 18px;
       font-weight: bold;
+      text-align: center;
+      scroll-snap-align: center;
+      box-shadow: 0 0 15px #ff0000, 0 0 25px #ff6b6b;
+      user-select: none;
+    }
+
+    #activate-btn {
+      padding: 10px 20px;
+      background: linear-gradient(90deg, #ff0000, #ff6b6b);
+      border: none;
+      color: black;
       border-radius: 10px;
-      box-shadow: 0 0 10px #00f0ff;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 0 0 15px #ff0000, 0 0 30px #ff6b6b;
       transition: 0.3s;
     }
+    #activate-btn:hover {
+      background: linear-gradient(90deg, #ff6b6b, #ff0000);
+    }
 
-    .content a:hover {
-      background: #00bfff;
-      box-shadow: 0 0 20px #00f0ff;
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      animation: glow 1s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 20px #ff0000, 0 0 40px #ff6b6b; }
+      25% { box-shadow: 0 0 25px #ff6600, 0 0 50px #ff9966; }
+      50% { box-shadow: 0 0 30px #ff0099, 0 0 60px #ff66cc; }
+      75% { box-shadow: 0 0 35px #ff0033, 0 0 70px #ff3366; }
+      100% { box-shadow: 0 0 40px #ff0000, 0 0 80px #ff6b6b; }
+    }
+
+    .loading-text {
+      color: #ff6b6b;
+      font-size: 26px;
+      animation: loadingColor 2s infinite alternate;
+      text-shadow: 0 0 20px #ff0000, 0 0 40px #ff6b6b;
+    }
+
+    @keyframes loadingColor {
+      0% { color: #ff0000; }
+      25% { color: #ff6600; }
+      50% { color: #ff0099; }
+      75% { color: #ff0033; }
+      100% { color: #ff0000; }
     }
   </style>
 </head>
-
 <body>
-  <div class="content">
-    <h1>Welcome to FreeFire ThanhDat</h1>
-    <a href="freefireth://" target="_blank">Mở Free Fire</a>
+
+<div class="menu-box" id="menuBox">
+  <h1>Menu VIP RED</h1>
+  <div class="carousel" id="carousel">
+    <div class="feature">Booster iOS</div>
+    <div class="feature">Sensilock Pro</div>
+    <div class="feature">DPi Config Pro</div>
+    <div class="feature">Giảm Rung (%)</div>
   </div>
+  <button id="activate-btn" onclick="activateFeature()">Kích hoạt</button>
+
+  <div id="loading" class="loading-overlay">
+    <div class="loading-text" id="loading-text">Loading 0%</div>
+  </div>
+
+  <audio id="success-sound" src="data:audio/mp3;base64,//uQxAA..." preload="auto"></audio>
+</div>
+
+<script>
+  const features = ["Booster iOS", "Sensilock Pro", "DPi Config Pro", "Giảm Rung (%)"];
+  const carousel = document.getElementById('carousel');
+  const menuBox = document.getElementById('menuBox');
+
+  let offsetX, offsetY, isDragging = false;
+
+  // Kéo thả
+  menuBox.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    offsetX = e.clientX - menuBox.offsetLeft;
+    offsetY = e.clientY - menuBox.offsetTop;
+  });
+
+  document.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      menuBox.style.left = (e.clientX - offsetX) + 'px';
+      menuBox.style.top = (e.clientY - offsetY) + 'px';
+    }
+  });
+
+  function getCurrentFeature() {
+    const scrollLeft = carousel.scrollLeft;
+    const width = carousel.offsetWidth;
+    const index = Math.round(scrollLeft / width);
+    return features[index] || features[0];
+  }
+
+  function activateFeature() {
+    const selectedFeature = getCurrentFeature();
+    const confirmAction = confirm(`Bạn có chắc chắn muốn kích hoạt: ${selectedFeature}?`);
+    if (confirmAction) {
+      startLoading();
+    }
+  }
+
+  function startLoading() {
+    const loadingOverlay = document.getElementById('loading');
+    const loadingText = document.getElementById('loading-text');
+    const successSound = document.getElementById('success-sound');
+
+    loadingOverlay.style.display = 'flex';
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += 5;
+      loadingText.textContent = `Loading ${progress}%`;
+      if (progress >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          loadingOverlay.style.display = 'none';
+          successSound.play();
+          if (navigator.vibrate) {
+            navigator.vibrate(200); // Rung nhẹ 200ms
+          }
+          alert('Đã kích hoạt thành công!');
+        }, 500);
+      }
+    }, 80);
+  }
+</script>
+
 </body>
 </html>

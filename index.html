@@ -19,7 +19,7 @@
     }
 
     .menu-box {
-      width: 300px;
+      width: 320px;
       background: rgba(30, 0, 0, 0.7);
       border-radius: 20px;
       padding: 20px;
@@ -39,15 +39,10 @@
 
     .menu-title {
       color: #ffffff;
-      font-size: 20px;
+      font-size: 26px;
       text-shadow: 0 0 8px #ff0000;
-      margin-bottom: 10px;
-    }
-
-    .menu-subtitle {
-      color: #cccccc;
-      font-size: 13px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
 
     .menu-footer {
@@ -80,61 +75,56 @@
       gap: 10px;
     }
 
-    .launch-button {
+    .launch-button, .button {
       width: 130px;
       height: 50px;
       border-radius: 12px;
       background: linear-gradient(135deg, #ff3300, #ff6600);
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-      font-size: 15px;
-      box-shadow: 0 0 10px #ff6600, 0 0 20px #ff0033;
-      transition: 0.3s;
-      cursor: pointer;
-    }
-
-    .launch-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #ff6600, 0 0 40px #ff0033;
-    }
-
-    .button {
-      width: 130px;
-      height: 50px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #ff3300, #ff6600);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      padding-left: 10px;
       color: white;
       font-weight: bold;
       font-size: 14px;
       box-shadow: 0 0 10px #ff6600, 0 0 20px #ff0033;
       transition: 0.3s;
-      text-align: center;
       cursor: pointer;
     }
 
-    .button img {
-      width: 24px;
-      height: 24px;
-      margin-right: 5px;
-      filter: drop-shadow(0 0 5px #ff3300);
+    .launch-button {
+      justify-content: center;
+      padding-left: 0;
     }
 
-    .button:hover {
+    .launch-button:hover, .button:hover {
       transform: scale(1.05);
       box-shadow: 0 0 20px #ff6600, 0 0 40px #ff0033;
     }
 
+    .button img {
+      width: 22px;
+      height: 22px;
+      margin-right: 8px;
+      filter: drop-shadow(0 0 5px #ff3300);
+    }
+
+    .button span {
+      flex: 1;
+      text-align: left;
+    }
+
+    .hidden {
+      display: none;
+    }
+
     .loading-overlay {
       position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0, 0, 0, 0.85);
       border-radius: 20px;
       display: none;
       align-items: center;
@@ -143,11 +133,21 @@
       z-index: 5;
     }
 
+    .loading-container {
+      background: rgba(255, 50, 0, 0.2);
+      padding: 20px;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 0 20px #ff3300;
+    }
+
     .spinner {
-      width: 40px;
-      height: 40px;
-      border: 4px solid rgba(255,255,255,0.1);
-      border-top: 4px solid #ff6600;
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255,255,255,0.1);
+      border-top: 5px solid #ff6600;
       border-radius: 50%;
       animation: spin 1s linear infinite;
       margin-bottom: 10px;
@@ -161,11 +161,8 @@
     .loading-text {
       color: #ff6600;
       font-size: 18px;
+      font-weight: bold;
       text-shadow: 0 0 8px #ff3300;
-    }
-
-    .hidden {
-      display: none;
     }
   </style>
 </head>
@@ -175,40 +172,49 @@
 <div class="menu-box" id="menuBox">
   <button class="toggle-button" onclick="toggleMenu()">+</button>
 
-  <div class="menu-title">Vision 5.0</div>
-  <div class="menu-subtitle">Menu Free Fire VIP</div>
+  <div class="menu-title">CONFIG THANHDAT</div>
 
-  <div class="launch-buttons">
-    <div class="launch-button" onclick="openApp('freefireth://')">Vào Free Fire</div>
-    <div class="launch-button" onclick="openApp('freefiremax://')">Vào Free Fire Max</div>
+  <div id="functionsArea" class="buttons hidden" style="margin-bottom:15px;">
+    <div class="button" onclick="activateFeature('CONFIG IPHONE')">
+      <img src="https://cdn-icons-png.flaticon.com/512/3448/3448666.png" alt="icon"><span>CONFIG IPHONE</span>
+    </div>
+    <div class="button" onclick="activateFeature('CONFIG MAXLOCK')">
+      <img src="https://cdn-icons-png.flaticon.com/512/3448/3448666.png" alt="icon"><span>CONFIG MAXLOCK</span>
+    </div>
+    <div class="button" onclick="activateFeature('CONFIG H4X')">
+      <img src="https://cdn-icons-png.flaticon.com/512/3448/3448666.png" alt="icon"><span>CONFIG H4X</span>
+    </div>
+    <div class="button" onclick="activateFeature('CONFIG OVERHEAD')">
+      <img src="https://cdn-icons-png.flaticon.com/512/3448/3448666.png" alt="icon"><span>CONFIG OVERHEAD</span>
+    </div>
+    <div class="button" onclick="activateFeature('CONFIG 144Hz')">
+      <img src="https://cdn-icons-png.flaticon.com/512/3448/3448666.png" alt="icon"><span>CONFIG 144Hz</span>
+    </div>
+    <div class="button" onclick="activateFeature('CONFIG HEADLOCK')">
+      <img src="https://cdn-icons-png.flaticon.com/512/3448/3448666.png" alt="icon"><span>CONFIG HEADLOCK</span>
+    </div>
+
+    <!-- Nút tải config trực tiếp -->
+    <div class="button">
+      <a href="https://yourserver.com/your-config-file.mobileconfig" download="config-ios.mobileconfig" style="display: flex; align-items: center; width: 100%; height: 100%; text-decoration: none; color: white;">
+        <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" alt="download">
+        <span>TẢI CONFIG</span>
+      </a>
+    </div>
   </div>
 
-  <div id="functionsArea" class="buttons hidden" style="margin-top:15px;">
-    <div class="button" onclick="activateFeature('Booster iOS')">
-      <img src="https://cdn-icons-png.flaticon.com/512/3448/3448666.png" alt="icon"> Booster
-    </div>
-    <div class="button" onclick="activateFeature('Sensilock Pro')">
-      <img src="https://cdn-icons-png.flaticon.com/512/3448/3448666.png" alt="icon"> Sensilock
-    </div>
-    <div class="button" onclick="activateFeature('DPi Config Pro')">
-      <img src="https://cdn-icons-png.flaticon.com/512/3448/3448666.png" alt="icon"> DPi Config
-    </div>
-    <div class="button" onclick="activateFeature('Giảm Rung')">
-      <img src="https://cdn-icons-png.flaticon.com/512/3448/3448666.png" alt="icon"> Giảm Rung
-    </div>
-    <div class="button" onclick="activateFeature('Buff Màn 144Hz')">
-      <img src="https://cdn-icons-png.flaticon.com/512/3448/3448666.png" alt="icon"> Buff 144Hz
-    </div>
-    <div class="button" onclick="activateFeature('Setup DPi VIP')">
-      <img src="https://cdn-icons-png.flaticon.com/512/3448/3448666.png" alt="icon"> DPi VIP
-    </div>
+  <div class="launch-buttons" id="launchArea">
+    <div class="launch-button" onclick="openApp('freefireth://')">Free Fire</div>
+    <div class="launch-button" onclick="openApp('freefiremax://')">Free Fire Max</div>
   </div>
 
-  <div class="menu-footer">Bản quyền thuộc về Thành Đạt</div>
+  <div class="menu-footer">@Bản quyền thuộc về Thành Đạt</div>
 
   <div id="loading" class="loading-overlay">
-    <div class="spinner"></div>
-    <div class="loading-text" id="loading-text">Loading 0%</div>
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <div class="loading-text" id="loading-text">Loading 0%</div>
+    </div>
   </div>
 </div>
 
@@ -269,7 +275,9 @@
 
   function toggleMenu() {
     const functionsArea = document.getElementById('functionsArea');
+    const toggleButton = document.querySelector('.toggle-button');
     functionsArea.classList.toggle('hidden');
+    toggleButton.textContent = functionsArea.classList.contains('hidden') ? '+' : '-';
   }
 </script>
 

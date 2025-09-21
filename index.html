@@ -1,165 +1,151 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Trái Tim - hyen</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<title>Surprise for hyen</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0f1724;
-    --accent1:#ff6b81;
-    --accent2:#ffb86b;
-    --accent3:#8a49ff;
-  }
-
-  html,body{
-    height:100%;
+  body {
     margin:0;
-    background:
-      radial-gradient(1200px 600px at 10% 10%, rgba(138,73,255,0.08), transparent 5%),
-      radial-gradient(900px 400px at 90% 90%, rgba(255,107,129,0.06), transparent 5%),
-      var(--bg);
-    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    color:#fff;
-    -webkit-font-smoothing:antialiased;
+    height:100vh;
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:40px;
-    box-sizing:border-box;
+    background: linear-gradient(135deg,#0f1724,#1a103f,#2b0f3a);
+    overflow:hidden;
+    font-family:"Poppins",sans-serif;
+    color:#fff;
   }
-
-  .card{
+  /* Hiệu ứng ngôi sao lấp lánh */
+  body::before {
+    content:"";
+    position:absolute;
+    width:200%;
+    height:200%;
+    background:
+      radial-gradient(2px 2px at 20% 30%, #fff, transparent),
+      radial-gradient(2px 2px at 80% 70%, #fff, transparent),
+      radial-gradient(2px 2px at 40% 90%, #fff, transparent),
+      radial-gradient(2px 2px at 70% 20%, #fff, transparent);
+    background-size:200px 200px;
+    animation: twinkle 8s linear infinite;
+  }
+  @keyframes twinkle {
+    from{ transform:translateY(0); }
+    to{ transform:translateY(-200px); }
+  }
+  /* Hộp khóa */
+  .lock-box {
+    background:#fff;
+    color:#222;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.5);
     text-align:center;
-    width:min(520px, 92vw);
+    position:relative;
+    z-index:2;
   }
-
-  .heart-wrap{
-    display:inline-block;
-    filter:drop-shadow(0 12px 30px rgba(0,0,0,0.6));
-    transform-origin:center;
-    animation: float 6s ease-in-out infinite;
+  .lock-box h2 {
+    margin:0 0 15px;
+    font-weight:600;
   }
-
-  @keyframes float{
-    0%{ transform: translateY(0) }
-    50%{ transform: translateY(-6px) }
-    100%{ transform: translateY(0) }
+  .lock-box input {
+    padding:10px 15px;
+    border-radius:8px;
+    border:none;
+    width:100%;
+    outline:none;
+    font-size:14px;
+    margin-bottom:12px;
   }
-
-  svg.heart{
-    width:min(360px, 72vw);
-    height:auto;
-    display:block;
-    margin:0 auto 18px;
+  .lock-box button {
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    background:#8a49ff;
+    color:#fff;
+    cursor:pointer;
+    font-weight:600;
+    transition:all .3s;
   }
-
-  /* Nhịp tim */
-  .beat{
-    transform-origin: 50% 50%;
-    animation: beat 1.05s ease-in-out infinite;
+  .lock-box button:hover {
+    background:#ff6b81;
   }
-  @keyframes beat{
-    0%{ transform: scale(1) }
-    25%{ transform: scale(1.06) }
-    50%{ transform: scale(1) }
-    75%{ transform: scale(1.03) }
-    100%{ transform: scale(1) }
+  /* Phần bất ngờ */
+  .surprise {
+    display:none;
+    text-align:center;
+    z-index:2;
   }
-
-  .label{
-    font-weight:800;
-    letter-spacing:1px;
-    font-size: clamp(18px, 4.2vw, 28px);
-    margin-top:6px;
-    color: #fff;
-    text-shadow:
-      0 6px 24px rgba(138,73,255,0.08),
-      0 2px 6px rgba(0,0,0,0.6);
+  .heart {
+    width:220px;
+    height:200px;
+    margin:0 auto 20px;
+    position:relative;
+    animation: beat 1.2s infinite ease-in-out;
   }
-
-  .sub{
-    margin-top:10px;
-    font-weight:500;
-    color:rgba(255,255,255,0.75);
-    font-size: clamp(12px, 2.6vw, 14px);
+  .heart:before, .heart:after {
+    content:"";
+    position:absolute;
+    top:0;
+    width:110px;
+    height:180px;
+    border-radius:110px 110px 0 0;
+    background:linear-gradient(135deg,#ff6b81,#ffb86b,#8a49ff);
   }
-
-  /* Hover effect (desktop) */
-  .heart-wrap:hover .shine { opacity:1; transform: translateX(0) scale(1); }
-  .heart-wrap:hover .beat { animation-duration:0.9s; }
-
-  /* small responsive tweak */
-  @media (max-width:420px){
-    body{ padding:20px; }
+  .heart:before {
+    left:110px;
+    transform:rotate(-45deg);
+    transform-origin:0 100%;
+  }
+  .heart:after {
+    left:0;
+    transform:rotate(45deg);
+    transform-origin:100% 100%;
+  }
+  @keyframes beat {
+    0%,100%{ transform:scale(1); }
+    25%{ transform:scale(1.1); }
+    50%{ transform:scale(0.95); }
+    75%{ transform:scale(1.05); }
+  }
+  .poem {
+    font-family:"Great Vibes",cursive;
+    font-size:28px;
+    line-height:1.6;
+    color:#fff;
+    text-shadow:0 0 8px rgba(255,255,255,0.4);
   }
 </style>
 </head>
 <body>
-  <main class="card" aria-label="Trái tim chứa chữ hyen">
-    <div class="heart-wrap" role="img" aria-label="Trái tim đẹp">
-      <!-- SVG trái tim với gradient động -->
-      <svg class="heart" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="false">
-        <defs>
-          <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ff6b81">
-              <animate attributeName="stop-color" dur="6s" values="#ff6b81;#ffb86b;#8a49ff;#ff6b81" repeatCount="indefinite" />
-            </stop>
-            <stop offset="50%" stop-color="#ffb86b">
-              <animate attributeName="stop-color" dur="6s" values="#ffb86b;#8a49ff;#ff6b81;#ffb86b" repeatCount="indefinite" />
-            </stop>
-            <stop offset="100%" stop-color="#8a49ff">
-              <animate attributeName="stop-color" dur="6s" values="#8a49ff;#ff6b81;#ffb86b;#8a49ff" repeatCount="indefinite" />
-            </stop>
-          </linearGradient>
+  <div class="lock-box" id="lockBox">
+    <h2>🔒 Hộp quà bí mật</h2>
+    <p>Nhập mật khẩu để mở:</p>
+    <input type="password" id="passInput" placeholder="Mật khẩu ở đây...">
+    <button onclick="checkPass()">Mở hộp</button>
+  </div>
 
-          <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
-            <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-
-          <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="2" />
-          </filter>
-        </defs>
-
-        <!-- shape trái tim (path) -->
-        <g class="beat">
-          <path d="M50 82
-                   C20 62, 5 42, 25 24
-                   C38 10, 50 20, 50 32
-                   C50 20, 62 10, 75 24
-                   C95 42, 80 62, 50 82 Z"
-                fill="url(#g1)"
-                stroke="rgba(255,255,255,0.08)"
-                stroke-width="1"
-                filter="url(#glow)"/>
-        </g>
-
-        <!-- highlight -->
-        <path class="shine" d="M30 28 C36 20, 48 18, 52 30 C54 36, 50 40, 42 44 C36 47, 30 46, 30 40 Z"
-              fill="rgba(255,255,255,0.12)" transform="translate(-2,-2)" opacity="0.9" style="transition:all .4s ease"/>
-
-        <!-- chữ hyen ở giữa -->
-        <g transform="translate(50,48)" text-anchor="middle" style="pointer-events:none">
-          <text x="0" y="-2" font-family="Poppins, sans-serif" font-weight="800" font-size="18" fill="white"
-                style="filter: drop-shadow(0 6px 18px rgba(0,0,0,0.55));">
-            hyen
-          </text>
-          <!-- outline subtle -->
-          <text x="0" y="-2" font-family="Poppins, sans-serif" font-weight="800" font-size="18" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="0.8">
-            hyen
-          </text>
-        </g>
-      </svg>
+  <div class="surprise" id="surpriseBox">
+    <div class="heart"></div>
+    <div class="poem">
+      Anh viết tặng em vần thơ,<br/>
+      Giữa muôn ngàn ánh sao mờ,<br/>
+      Trái tim này chỉ có một,<br/>
+      Dành riêng cho em — hyen mộng mơ. 💖
     </div>
+  </div>
 
-    <div class="label">hyen</div>
-    <div class="sub">Một trái tim nhỏ, một phong cách to ✨</div>
-  </main>
+<script>
+  function checkPass(){
+    const pass = document.getElementById("passInput").value.trim();
+    if(pass === "Anhyeuemhyennhattrenthegioi"){
+      document.getElementById("lockBox").style.display="none";
+      document.getElementById("surpriseBox").style.display="block";
+    } else {
+      alert("Sai mật khẩu rồi, thử lại nhé 💌");
+    }
+  }
+</script>
 </body>
 </html>

@@ -16,6 +16,7 @@
     font-family:"Quicksand",sans-serif;
     color:#fff;
   }
+
   /* Hộp khóa */
   .lock-box {
     background:#fff;
@@ -24,7 +25,6 @@
     border-radius:16px;
     box-shadow:0 10px 40px rgba(0,0,0,0.5);
     text-align:center;
-    position:relative;
     z-index:2;
   }
   .lock-box h2 {margin:0 0 15px;}
@@ -48,7 +48,7 @@
   }
   .lock-box button:hover {background:#ff6b81;}
 
-  /* Surprise content */
+  /* Nội dung bất ngờ */
   .surprise {
     display:none;
     text-align:center;
@@ -56,6 +56,7 @@
     max-width:700px;
   }
 
+  /* Trái tim lớn */
   .heart {
     width:200px; height:180px; margin:0 auto 20px; position:relative;
     animation: beat 1.2s infinite ease-in-out;
@@ -106,6 +107,20 @@
     opacity:0; transition:opacity 1s ease;
   }
   .slideshow img.active {opacity:1;}
+
+  /* Trái tim bay */
+  .floating-heart {
+    position:absolute;
+    font-size:20px;
+    color:#ff6b81;
+    animation: floatUp 4s linear forwards;
+    pointer-events:none;
+  }
+  @keyframes floatUp {
+    0% {opacity:1; transform:translateY(0) scale(1);}
+    80% {opacity:0.7; transform:translateY(-150px) scale(1.5);}
+    100% {opacity:0; transform:translateY(-200px) scale(0.8);}
+  }
 </style>
 </head>
 <body>
@@ -151,6 +166,7 @@
       document.getElementById("lockBox").style.display="none";
       document.getElementById("surpriseBox").style.display="block";
       startSlideshow();
+      startHearts();
     } else {
       alert("Sai mật khẩu rồi, thử lại nhé 💌");
     }
@@ -164,7 +180,20 @@
       slides[index].classList.remove("active");
       index = (index+1) % slides.length;
       slides[index].classList.add("active");
-    }, 2500);
+    }, 3000);
+  }
+
+  // floating hearts function
+  function startHearts(){
+    setInterval(()=>{
+      const heart = document.createElement("div");
+      heart.className = "floating-heart";
+      heart.textContent = "💖";
+      heart.style.left = Math.random()*90 + "%";
+      heart.style.bottom = "0";
+      document.body.appendChild(heart);
+      setTimeout(()=>heart.remove(),4000);
+    }, 800);
   }
 </script>
 </body>

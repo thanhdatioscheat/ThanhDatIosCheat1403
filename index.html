@@ -1,200 +1,107 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<title>For Hyen 💖</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-<style>
-  body {
-    margin:0;
-    height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background: linear-gradient(135deg,#0f1724,#2b0f3a);
-    overflow:hidden;
-    font-family:"Quicksand",sans-serif;
-    color:#fff;
-  }
-
-  /* Hộp khóa */
-  .lock-box {
-    background:#fff;
-    color:#222;
-    padding:30px;
-    border-radius:16px;
-    box-shadow:0 10px 40px rgba(0,0,0,0.5);
-    text-align:center;
-    z-index:2;
-  }
-  .lock-box h2 {margin:0 0 15px;}
-  .lock-box input {
-    padding:10px 15px;
-    border-radius:8px;
-    border:none;
-    width:100%;
-    margin-bottom:12px;
-    font-size:14px;
-  }
-  .lock-box button {
-    padding:10px 20px;
-    border:none;
-    border-radius:8px;
-    background:#8a49ff;
-    color:#fff;
-    cursor:pointer;
-    font-weight:600;
-    transition:all .3s;
-  }
-  .lock-box button:hover {background:#ff6b81;}
-
-  /* Nội dung bất ngờ */
-  .surprise {
-    display:none;
-    text-align:center;
-    z-index:2;
-    max-width:700px;
-  }
-
-  /* Trái tim lớn */
-  .heart {
-    width:200px; height:180px; margin:0 auto 20px; position:relative;
-    animation: beat 1.2s infinite ease-in-out;
-  }
-  .heart:before, .heart:after {
-    content:""; position:absolute; top:0; width:100px; height:160px;
-    border-radius:100px 100px 0 0;
-    background:linear-gradient(135deg,#ff6b81,#ffb86b,#8a49ff);
-  }
-  .heart:before {left:100px; transform:rotate(-45deg); transform-origin:0 100%;}
-  .heart:after {left:0; transform:rotate(45deg); transform-origin:100% 100%;}
-  @keyframes beat {
-    0%,100%{ transform:scale(1); }
-    25%{ transform:scale(1.1); }
-    50%{ transform:scale(0.95); }
-    75%{ transform:scale(1.05); }
-  }
-
-  .info {
-    margin:20px 0;
-    font-size:18px;
-    line-height:1.6;
-    font-weight:600;
-    color:#ffe;
-  }
-  .info span {color:#ffb6c1;}
-
-  .poem {
-    font-family:"Great Vibes",cursive;
-    font-size:26px;
-    line-height:1.6;
-    margin:20px 0;
-    text-shadow:0 0 8px rgba(255,255,255,0.4);
-  }
-
-  /* Slideshow */
-  .slideshow {
-    position:relative;
-    width:260px; height:360px;
-    margin:0 auto;
-    overflow:hidden;
-    border-radius:16px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.5);
-  }
-  .slideshow img {
-    position:absolute;
-    width:100%; height:100%; object-fit:cover;
-    opacity:0; transition:opacity 1s ease;
-  }
-  .slideshow img.active {opacity:1;}
-
-  /* Trái tim bay */
-  .floating-heart {
-    position:absolute;
-    font-size:20px;
-    color:#ff6b81;
-    animation: floatUp 4s linear forwards;
-    pointer-events:none;
-  }
-  @keyframes floatUp {
-    0% {opacity:1; transform:translateY(0) scale(1);}
-    80% {opacity:0.7; transform:translateY(-150px) scale(1.5);}
-    100% {opacity:0; transform:translateY(-200px) scale(0.8);}
-  }
-</style>
+  <meta charset="UTF-8">
+  <title>Hộp Bất Ngờ Cho Yên 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #2b1055, #7597de);
+      color: white;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    h1 {
+      margin-top: 50px;
+      font-size: 28px;
+      color: #ffcad4;
+      text-shadow: 0 0 10px #ff6fa5;
+    }
+    .login-box {
+      margin-top: 40px;
+    }
+    input[type="password"] {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      width: 220px;
+      font-size: 16px;
+    }
+    button {
+      margin-left: 10px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      background: #ff6fa5;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #ff3d7f;
+    }
+    .surprise {
+      display: none;
+      margin-top: 40px;
+      animation: fadeIn 1s ease forwards;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(255, 111, 165, 0.7);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.2) rotate(5deg);
+      box-shadow: 0 8px 25px rgba(255, 180, 200, 1);
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(50px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
 </head>
 <body>
-  <!-- Hộp khóa -->
-  <div class="lock-box" id="lockBox">
-    <h2>🔒 Hộp quà bí mật</h2>
-    <p>Nhập mật khẩu để mở:</p>
-    <input type="password" id="passInput" placeholder="Mật khẩu ở đây...">
-    <button onclick="checkPass()">Mở hộp</button>
+  <h1>💖 Nhập mật khẩu để mở hộp bất ngờ 💖</h1>
+  <div class="login-box">
+    <input type="password" id="password" placeholder="Nhập mật khẩu...">
+    <button onclick="checkPassword()">Mở hộp</button>
   </div>
 
-  <!-- Nội dung bất ngờ -->
-  <div class="surprise" id="surpriseBox">
-    <div class="heart"></div>
-
-    <div class="info">
-      Tên: <span>Huỳnh Thục Nhã Yên</span><br/>
-      Tuổi: <span>17</span><br/>
-      Biệt danh: <span>Gấu 🐻</span>
-    </div>
-
-    <div class="slideshow" id="slideshow">
-      <!-- Thay link ảnh ở đây -->
-      <img src="https://i.ibb.co/s9wxGmhy/att-q-YQv-YPzp8e-NJFsgi9hl1r-uim-DJS7j-Kp-T55y-MXk-Jok.jpg" class="active">
-      <img src="https://i.ibb.co/FLSN0YSm/IMG-1543.jpg">
-      <img src="https://i.ibb.co/W4GFBtn2/IMG-2966.jpg">
-      <img src="https://i.ibb.co/Zz4cGJvw/IMG-1043.jpg">
-      <img src="https://i.ibb.co/7tpp4sGB/IMG-1160.jpg">
-    </div>
-
-    <div class="poem">
-      Nhìn em lòng bỗng dịu êm,<br/>
-      Gấu nhỏ thương mến suốt đêm lẫn ngày,<br/>
-      Một đời chỉ nguyện nắm tay,<br/>
-      Hyen yêu Nhã Yên chẳng đổi thay. 💕
+  <div class="surprise" id="surprise">
+    <h2>🎁 Bất ngờ cho Yên dễ thương 🎁</h2>
+    <p>Toàn bộ là hình cute dành riêng cho Gấu 🐻</p>
+    <div class="gallery">
+      <img src="https://i.postimg.cc/tgN6fQ1h/cute-pig.jpg" alt="Heo cute">
+      <img src="https://i.postimg.cc/9M3yHPMR/cute-cat.jpg" alt="Mèo dễ thương">
+      <img src="https://i.postimg.cc/63vNvQb4/cute-rabbit.jpg" alt="Thỏ đáng yêu">
+      <img src="https://i.postimg.cc/15T4P5dj/anime-girl.jpg" alt="Anime chibi">
+      <img src="https://i.postimg.cc/Y2Sk6H2H/cute-bear.jpg" alt="Gấu bông">
+      <img src="https://i.postimg.cc/nz2Q2qBh/hamster.jpg" alt="Hamster cute">
     </div>
   </div>
 
-<script>
-  function checkPass(){
-    const pass = document.getElementById("passInput").value.trim();
-    if(pass === "Anhyeuemhyennhattrenthegioi"){
-      document.getElementById("lockBox").style.display="none";
-      document.getElementById("surpriseBox").style.display="block";
-      startSlideshow();
-      startHearts();
-    } else {
-      alert("Sai mật khẩu rồi, thử lại nhé 💌");
+  <script>
+    function checkPassword() {
+      const pass = document.getElementById("password").value;
+      if (pass === "Anhyeuemhyennhattrenthegioi") {
+        document.getElementById("surprise").style.display = "block";
+      } else {
+        alert("Sai mật khẩu rồi nha 😘");
+      }
     }
-  }
-
-  // slideshow function
-  function startSlideshow(){
-    const slides = document.querySelectorAll("#slideshow img");
-    let index = 0;
-    setInterval(()=>{
-      slides[index].classList.remove("active");
-      index = (index+1) % slides.length;
-      slides[index].classList.add("active");
-    }, 3000);
-  }
-
-  // floating hearts function
-  function startHearts(){
-    setInterval(()=>{
-      const heart = document.createElement("div");
-      heart.className = "floating-heart";
-      heart.textContent = "💖";
-      heart.style.left = Math.random()*90 + "%";
-      heart.style.bottom = "0";
-      document.body.appendChild(heart);
-      setTimeout(()=>heart.remove(),4000);
-    }, 800);
-  }
-</script>
+  </script>
 </body>
 </html>

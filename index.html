@@ -2,8 +2,8 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>Surprise for hyen</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<title>For Hyen 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 <style>
   body {
     margin:0;
@@ -11,28 +11,10 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    background: linear-gradient(135deg,#0f1724,#1a103f,#2b0f3a);
+    background: linear-gradient(135deg,#0f1724,#2b0f3a);
     overflow:hidden;
-    font-family:"Poppins",sans-serif;
+    font-family:"Quicksand",sans-serif;
     color:#fff;
-  }
-  /* Hiệu ứng ngôi sao lấp lánh */
-  body::before {
-    content:"";
-    position:absolute;
-    width:200%;
-    height:200%;
-    background:
-      radial-gradient(2px 2px at 20% 30%, #fff, transparent),
-      radial-gradient(2px 2px at 80% 70%, #fff, transparent),
-      radial-gradient(2px 2px at 40% 90%, #fff, transparent),
-      radial-gradient(2px 2px at 70% 20%, #fff, transparent);
-    background-size:200px 200px;
-    animation: twinkle 8s linear infinite;
-  }
-  @keyframes twinkle {
-    from{ transform:translateY(0); }
-    to{ transform:translateY(-200px); }
   }
   /* Hộp khóa */
   .lock-box {
@@ -45,18 +27,14 @@
     position:relative;
     z-index:2;
   }
-  .lock-box h2 {
-    margin:0 0 15px;
-    font-weight:600;
-  }
+  .lock-box h2 {margin:0 0 15px;}
   .lock-box input {
     padding:10px 15px;
     border-radius:8px;
     border:none;
     width:100%;
-    outline:none;
-    font-size:14px;
     margin-bottom:12px;
+    font-size:14px;
   }
   .lock-box button {
     padding:10px 20px;
@@ -68,57 +46,70 @@
     font-weight:600;
     transition:all .3s;
   }
-  .lock-box button:hover {
-    background:#ff6b81;
-  }
-  /* Phần bất ngờ */
+  .lock-box button:hover {background:#ff6b81;}
+
+  /* Surprise content */
   .surprise {
     display:none;
     text-align:center;
     z-index:2;
+    max-width:700px;
   }
+
   .heart {
-    width:220px;
-    height:200px;
-    margin:0 auto 20px;
-    position:relative;
+    width:200px; height:180px; margin:0 auto 20px; position:relative;
     animation: beat 1.2s infinite ease-in-out;
   }
   .heart:before, .heart:after {
-    content:"";
-    position:absolute;
-    top:0;
-    width:110px;
-    height:180px;
-    border-radius:110px 110px 0 0;
+    content:""; position:absolute; top:0; width:100px; height:160px;
+    border-radius:100px 100px 0 0;
     background:linear-gradient(135deg,#ff6b81,#ffb86b,#8a49ff);
   }
-  .heart:before {
-    left:110px;
-    transform:rotate(-45deg);
-    transform-origin:0 100%;
-  }
-  .heart:after {
-    left:0;
-    transform:rotate(45deg);
-    transform-origin:100% 100%;
-  }
+  .heart:before {left:100px; transform:rotate(-45deg); transform-origin:0 100%;}
+  .heart:after {left:0; transform:rotate(45deg); transform-origin:100% 100%;}
   @keyframes beat {
     0%,100%{ transform:scale(1); }
     25%{ transform:scale(1.1); }
     50%{ transform:scale(0.95); }
     75%{ transform:scale(1.05); }
   }
+
+  .info {
+    margin:20px 0;
+    font-size:18px;
+    line-height:1.6;
+    font-weight:600;
+    color:#ffe;
+  }
+  .info span {color:#ffb6c1;}
+
   .poem {
     font-family:"Great Vibes",cursive;
-    font-size:28px;
+    font-size:26px;
     line-height:1.6;
-    color:#fff;
+    margin:20px 0;
     text-shadow:0 0 8px rgba(255,255,255,0.4);
   }
+
+  /* Slideshow */
+  .slideshow {
+    position:relative;
+    width:260px; height:360px;
+    margin:0 auto;
+    overflow:hidden;
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  }
+  .slideshow img {
+    position:absolute;
+    width:100%; height:100%; object-fit:cover;
+    opacity:0; transition:opacity 1s ease;
+  }
+  .slideshow img.active {opacity:1;}
 </style>
 </head>
 <body>
+  <!-- Hộp khóa -->
   <div class="lock-box" id="lockBox">
     <h2>🔒 Hộp quà bí mật</h2>
     <p>Nhập mật khẩu để mở:</p>
@@ -126,13 +117,30 @@
     <button onclick="checkPass()">Mở hộp</button>
   </div>
 
+  <!-- Nội dung bất ngờ -->
   <div class="surprise" id="surpriseBox">
     <div class="heart"></div>
+
+    <div class="info">
+      Tên: <span>Huỳnh Thục Nhã Yên</span><br/>
+      Tuổi: <span>17</span><br/>
+      Biệt danh: <span>Gấu 🐻</span>
+    </div>
+
+    <div class="slideshow" id="slideshow">
+      <!-- Thay link ảnh ở đây -->
+      <img src="https://placekitten.com/300/400" class="active">
+      <img src="https://placekitten.com/301/400">
+      <img src="https://placekitten.com/302/400">
+      <img src="https://placekitten.com/303/400">
+      <img src="https://placekitten.com/304/400">
+    </div>
+
     <div class="poem">
-      Anh viết tặng em vần thơ,<br/>
-      Giữa muôn ngàn ánh sao mờ,<br/>
-      Trái tim này chỉ có một,<br/>
-      Dành riêng cho em — hyen mộng mơ. 💖
+      Nhìn em lòng bỗng dịu êm,<br/>
+      Gấu nhỏ thương mến suốt đêm lẫn ngày,<br/>
+      Một đời chỉ nguyện nắm tay,<br/>
+      Hyen yêu Nhã Yên chẳng đổi thay. 💕
     </div>
   </div>
 
@@ -142,9 +150,21 @@
     if(pass === "Anhyeuemhyennhattrenthegioi"){
       document.getElementById("lockBox").style.display="none";
       document.getElementById("surpriseBox").style.display="block";
+      startSlideshow();
     } else {
       alert("Sai mật khẩu rồi, thử lại nhé 💌");
     }
+  }
+
+  // slideshow function
+  function startSlideshow(){
+    const slides = document.querySelectorAll("#slideshow img");
+    let index = 0;
+    setInterval(()=>{
+      slides[index].classList.remove("active");
+      index = (index+1) % slides.length;
+      slides[index].classList.add("active");
+    }, 2500);
   }
 </script>
 </body>

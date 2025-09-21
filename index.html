@@ -8,7 +8,7 @@
         margin: 0;
         font-family: "Comic Sans MS", cursive, sans-serif;
         background: #ffe6f2;
-        overflow: hidden;
+        overflow-x: hidden;
         text-align: center;
     }
 
@@ -18,7 +18,6 @@
         text-shadow: 2px 2px #fff;
         animation: glow 2s infinite alternate;
     }
-
     @keyframes glow {
         from { text-shadow: 0 0 5px #fff, 0 0 10px #ff66b2; }
         to { text-shadow: 0 0 20px #ff3399, 0 0 30px #ff99cc; }
@@ -41,14 +40,12 @@
         margin-top: 30px;
         gap: 40px;
     }
-
     .gift {
         position: relative;
         width: 150px;
         height: 150px;
         cursor: pointer;
     }
-
     .box {
         width: 100%;
         height: 100%;
@@ -57,7 +54,6 @@
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         position: relative;
     }
-
     .lid {
         width: 110%;
         height: 40px;
@@ -69,11 +65,9 @@
         transition: transform 0.6s ease;
         box-shadow: 0 5px 10px rgba(0,0,0,0.2);
     }
-
     .gift:hover .lid {
         transform: rotate(-5deg);
     }
-
     .gift.open .lid {
         transform: translateY(-80px) rotate(-15deg);
     }
@@ -91,7 +85,6 @@
         z-index: 1000;
         text-align: center;
     }
-
     .popup input {
         padding: 10px;
         border: 2px solid #ff99cc;
@@ -99,7 +92,6 @@
         outline: none;
         margin: 10px 0;
     }
-
     .popup button {
         padding: 10px 20px;
         background: #ff66b2;
@@ -110,16 +102,8 @@
         cursor: pointer;
         transition: 0.3s;
     }
-
     .popup button:hover {
         background: #ff3399;
-    }
-
-    .popup img {
-        max-width: 200px;
-        margin-top: 10px;
-        border-radius: 15px;
-        box-shadow: 0 0 10px pink;
     }
 
     .hearts {
@@ -131,17 +115,79 @@
         pointer-events: none;
         z-index: 0;
     }
-
     .heart {
         position: absolute;
         color: #ff3399;
         font-size: 20px;
         animation: float 6s linear infinite;
     }
-
     @keyframes float {
         from { transform: translateY(100vh) scale(0.5); opacity: 1; }
         to { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    /* Chat style */
+    @keyframes slideInRight {
+        from { transform: translateX(50px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideInLeft {
+        from { transform: translateX(-50px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    .user-msg {
+        background:#ff99cc;
+        color:#fff;
+        padding:8px 12px;
+        border-radius:15px;
+        margin:5px;
+        display:inline-block;
+        max-width:70%;
+        float:right;
+        clear:both;
+        box-shadow:0 0 8px #ffb6d9;
+        animation: slideInRight 0.4s ease;
+    }
+    .admin-msg {
+        background:#66b3ff;
+        color:#fff;
+        padding:8px 12px;
+        border-radius:15px;
+        margin:5px;
+        display:inline-block;
+        max-width:70%;
+        float:left;
+        clear:both;
+        box-shadow:0 0 8px #99d1ff;
+        animation: slideInLeft 0.4s ease;
+    }
+    .typing {
+        background:#66b3ff;
+        color:white;
+        padding:8px 12px;
+        border-radius:15px;
+        margin:5px;
+        display:inline-block;
+        max-width:40px;
+        float:left;
+        clear:both;
+        box-shadow:0 0 8px #99d1ff;
+        animation: slideInLeft 0.3s ease;
+    }
+    .dot {
+        display:inline-block;
+        width:6px;
+        height:6px;
+        margin:0 2px;
+        background:white;
+        border-radius:50%;
+        animation: blink 1.2s infinite;
+    }
+    .dot:nth-child(2) { animation-delay: 0.2s; }
+    .dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes blink {
+        0%, 80%, 100% { opacity: 0; }
+        40% { opacity: 1; }
     }
 </style>
 </head>
@@ -176,8 +222,40 @@
     <br>
     <button onclick="checkPassword()">Xác nhận</button>
     <p id="message" style="color:red; font-weight:bold;"></p>
-    <div id="giftImage"></div>
 </div>
+
+<!-- Nút nhắn tin zalo -->
+<div style="margin-top:20px;">
+    <a href="https://zalo.me/0378099746" target="_blank" 
+       style="display:inline-block; background:#0084ff; color:white; 
+              padding:12px 20px; border-radius:10px; text-decoration:none; 
+              font-weight:bold; box-shadow:0 0 10px #66b3ff;">
+        💬 Nhắn tin Admin qua Zalo
+    </a>
+</div>
+
+<!-- Chat mini -->
+<div id="chatBox" style="position:fixed; bottom:20px; right:20px; width:280px; 
+                        background:#fff0f5; border-radius:15px; box-shadow:0 0 15px pink; 
+                        padding:10px; display:none; z-index:2000;">
+    <div id="chatMessages" style="height:180px; overflow-y:auto; 
+                                  font-size:14px; padding:5px;"></div>
+    <input type="text" id="chatInput" 
+           style="width:70%; padding:6px; border:1px solid #ff99cc; border-radius:8px;">
+    <button onclick="sendChat()" 
+            style="width:25%; padding:6px; background:#ff66b2; color:white; border:none; 
+                   border-radius:8px; cursor:pointer;">Gửi</button>
+</div>
+
+<button onclick="toggleChat()" 
+        style="position:fixed; bottom:20px; left:20px; background:#ff3399; color:white; 
+               padding:12px 20px; border:none; border-radius:50px; cursor:pointer; 
+               font-weight:bold; box-shadow:0 0 15px pink; z-index:2000;">
+    💌 Chat với Admin
+</button>
+
+<!-- Âm thanh ting ting -->
+<audio id="tingSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3" preload="auto"></audio>
 
 <div class="hearts" id="hearts"></div>
 
@@ -190,40 +268,26 @@
         element.classList.add("open");
         setTimeout(() => {
             openPopup(gift);
-        }, 800); // delay sau khi hộp bung nắp
+        }, 800);
     }
 
     function openPopup(gift) {
         currentGift = gift;
         document.getElementById("popup").style.display = "block";
         document.getElementById("message").innerText = "";
-        document.getElementById("giftImage").innerHTML = "";
         document.getElementById("password").value = "";
     }
 
     function checkPassword() {
         const pass = document.getElementById("password").value;
         const message = document.getElementById("message");
-        const giftImage = document.getElementById("giftImage");
 
         if(pass === "Anhyeuemhyennhattrenthegioi") {
             message.style.color = "green";
             message.innerText = "✅ Chúc mừng! Bạn đã chọn " + currentGift + " 🎉";
-
-            let imgSrc = "";
-            if(currentGift.includes("Capybara")) {
-                imgSrc = "https://i.imgur.com/7T3QWzV.jpeg"; 
-            } else if(currentGift.includes("quần áo")) {
-                imgSrc = "https://i.imgur.com/LErT1D3.jpeg"; 
-            } else if(currentGift.includes("Makeup")) {
-                imgSrc = "https://i.imgur.com/5v0lK8Q.jpeg"; 
-            }
-            giftImage.innerHTML = `<img src="${imgSrc}" alt="${currentGift}">`;
-
         } else {
             message.style.color = "red";
             message.innerText = "❌ Sai mật khẩu rồi Gấu ơi!";
-            giftImage.innerHTML = "";
         }
     }
 
@@ -236,12 +300,57 @@
         heart.style.fontSize = (Math.random() * 20 + 10) + "px";
         heart.style.animationDuration = (Math.random() * 4 + 3) + "s";
         document.getElementById("hearts").appendChild(heart);
-
-        setTimeout(() => {
-            heart.remove();
-        }, 6000);
+        setTimeout(() => { heart.remove(); }, 6000);
     }
     setInterval(createHeart, 500);
+
+    // Chat box
+    function toggleChat() {
+        const chatBox = document.getElementById("chatBox");
+        const chatInput = document.getElementById("chatInput");
+
+        if (chatBox.style.display === "none" || chatBox.style.display === "") {
+            chatBox.style.display = "block";
+            chatInput.value = "Bạn là Hyen phải không?";
+        } else {
+            chatBox.style.display = "none";
+        }
+    }
+
+    function sendChat() {
+        const input = document.getElementById("chatInput");
+        const messages = document.getElementById("chatMessages");
+        const ting = document.getElementById("tingSound");
+
+        if(input.value.trim() !== "") {
+            let userMsg = document.createElement("div");
+            userMsg.classList.add("user-msg");
+            userMsg.innerText = input.value;
+            messages.appendChild(userMsg);
+
+            // Hiện typing
+            let typingMsg = document.createElement("div");
+            typingMsg.classList.add("typing");
+            typingMsg.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+            messages.appendChild(typingMsg);
+            messages.scrollTop = messages.scrollHeight;
+
+            setTimeout(() => {
+                typingMsg.remove();
+
+                let adminMsg = document.createElement("div");
+                adminMsg.classList.add("admin-msg");
+                adminMsg.innerText = "Chào Hyen tôi sẽ đáp ứng mọi nhu cầu của bạn tại vì bạn là bồ yêu của TDAT 😘";
+                messages.appendChild(adminMsg);
+
+                ting.play();
+                messages.scrollTop = messages.scrollHeight;
+            }, 1200);
+
+            input.value = "";
+            messages.scrollTop = messages.scrollHeight;
+        }
+    }
 </script>
 
 </body>

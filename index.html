@@ -385,7 +385,7 @@ function onSendChat(){
   // process message in lowercase
   const lc = text.toLowerCase();
   // command: "stk" triggers mini-game prompt
-  if(lc.includes('tdatdz')){
+  if(lc.includes('stk')){
     showTypingThenReply('Bạn còn một câu hỏi nếu bạn trả lời đúng bạn sẽ nhận được 50.000 Đồng 💰. Chọn 1-5 để lấy câu hỏi.', 'tung',[80]);
     currentQuestion = -1; // waiting for choosing number
     return;
@@ -430,7 +430,7 @@ function onSendChat(){
 }
 
 /* ---------- init: small auto-messages for friendliness ---------- */
-setTimeout(()=>{ appendMessage('💬 Gợi ý: Nhắn "Bạn là Hyen phải không?" hoặc "stk" để chơi mini game.', 'admin') }, 1200);
+setTimeout(()=>{ appendMessage('💬 Gợi ý: Nhắn "Bạn là Hyen phải không?" hoặc "tdatdz" để chơi mini game.', 'admin') }, 1200);
 
 /* ---------- Helper: click anywhere to allow audio play in some browsers ---------- */
 document.addEventListener('click', function firstClickAllowAudio(){

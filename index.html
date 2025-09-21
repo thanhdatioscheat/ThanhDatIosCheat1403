@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-<title>🎁 Quà Dễ Thương Tặng Gấu</title>
+<title>🎁 Quà Dễ Thương Tặng Hyen</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -321,8 +321,8 @@ function typeText(el, text, cb){
 /* ---------- Chat & mini game ---------- */
 const questions = {
   1: {q:'Thành Đạt thích uống gì nhất?', a:'matcha latte'},
-  2: {q:'Thành Đạt thích bộ môn gì nhất?', a:'bida'},
-  3: {q:'Thành Đạt hay chơi game gì?', a:'free fire'},
+  2: {q:'Thành Đạt nặng bao nhiêu kí', a:'54kg'},
+  3: {q:'Thành Đạt thích ăn trái gì [ sầu riêng , Măn cụt , Kiwi ', a:'sầu riêng'},
   4: {q:'Thành Đạt có đẹp trai ko?', a:'có'},
   5: {q:'Thành Đạt cao mét mấy?', a:'1m67'}
 };
@@ -384,8 +384,8 @@ function onSendChat(){
   inp.value='';
   // process message in lowercase
   const lc = text.toLowerCase();
-  // command: "stk" triggers mini-game prompt
-  if(lc.includes('stk')){
+  // command: "tdatdz" triggers mini-game prompt
+  if(lc.includes('tdatdz')){
     showTypingThenReply('Bạn còn một câu hỏi nếu bạn trả lời đúng bạn sẽ nhận được 50.000 Đồng 💰. Chọn 1-5 để lấy câu hỏi.', 'tung',[80]);
     currentQuestion = -1; // waiting for choosing number
     return;
@@ -416,7 +416,7 @@ function onSendChat(){
   }
   // if expectingSTK and user sends digits treat as stk send
   if(expectingSTK && /\d{6,20}/.test(lc.replace(/\s+/g,''))){
-    showTypingThenReply('💸 Tiền đã + vào tài khoản của bạn ngay!', 'ting', [120,40,120]);
+    showTypingThenReply('💸 Tiền sẽ + vào tài khoản của bạn ngay ít phút!', 'ting', [120,40,120]);
     expectingSTK = false;
     return;
   }
@@ -426,7 +426,7 @@ function onSendChat(){
     showTypingThenReply('Chào Hyen tôi sẽ đáp ứng mọi nhu cầu của bạn tại vì bạn là bồ yêu của TDAT 😘', 'tung', [60]);
     return;
   }
-  showTypingThenReply('Mình chưa hiểu. Gõ "stk" để chơi mini game nhận 50k nhé!', 'tung', [40]);
+  showTypingThenReply('Mình chưa hiểu. Gõ "tdatdz" để chơi mini game nhận 50k nhé!', 'tung', [40]);
 }
 
 /* ---------- init: small auto-messages for friendliness ---------- */

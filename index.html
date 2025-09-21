@@ -1,412 +1,447 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎁 Quà Tặng Dễ Thương Cho Gấu 🐻</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>🎁 Quà Dễ Thương Tặng Gấu</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
-    body {
-        margin: 0;
-        font-family: "Poppins", sans-serif;
-        background: #ffe6f2;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        overflow: hidden;
-    }
+  :root{
+    --pink:#ff66b2; --bg:#ffe6f2; --soft:#fff0f5;
+  }
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,#ffd7ec,#ffe6f2);font-family:Poppins,Arial,sans-serif}
+  /* Center phone-like container */
+  .screen {
+    width:100%;
+    max-width:430px; /* iPhone 14 Pro */
+    height:100vh;
+    margin:0 auto;
+    background:#fff;
+    border-radius:26px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.18);
+    overflow:hidden;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    padding:14px;
+    box-sizing:border-box;
+  }
 
-    .container {
-        width: 100%;
-        max-width: 430px; /* iPhone 13/14 Pro chiều rộng */
-        height: 100vh;
-        background: #fff;
-        border-radius: 20px;
-        box-shadow: 0 0 20px rgba(255,105,180,0.4);
-        padding: 15px;
-        box-sizing: border-box;
-        position: relative;
-        overflow: hidden;
-    }
+  /* header/title */
+  h1{
+    margin:4px 0 8px;
+    font-size:18px;
+    text-align:center;
+    background:linear-gradient(45deg,#ff3399,#ff66cc,#ff99ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:glow 2s infinite alternate;
+  }
+  @keyframes glow{from{ text-shadow:0 0 5px #fff }to{ text-shadow:0 0 20px #ff99cc }}
 
-    h1 {
-        margin: 5px 0;
-        color: #ff3399;
-        text-align: center;
-        text-shadow: 2px 2px #fff;
-        animation: glow 2s infinite alternate;
-        font-size: 18px;
-    }
+  .info{
+    background:var(--soft);
+    border-radius:12px;
+    padding:8px;
+    text-align:center;
+    color:#cc0066;
+    font-weight:600;
+    box-shadow:0 4px 12px rgba(255,153,204,0.2);
+  }
 
-    @keyframes glow {
-        from { text-shadow: 0 0 5px #fff, 0 0 10px #ff66b2; }
-        to { text-shadow: 0 0 20px #ff3399, 0 0 30px #ff99cc; }
-    }
+  .note{
+    text-align:center;
+    margin:10px 0;
+    color:#cc0066;
+    font-weight:700;
+    font-size:13px;
+  }
 
-    .info {
-        text-align: center;
-        background: #fff0f5;
-        padding: 8px;
-        border-radius: 12px;
-        font-size: 14px;
-        color: #cc0066;
-        box-shadow: 0 0 8px pink;
-    }
+  /* gifts area */
+  .gifts{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    align-items:center;
+    margin:8px 0 12px;
+  }
+  .gift{
+    width:88px;height:88px;position:relative;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .18s ease;
+  }
+  .gift:active{ transform:scale(.98); }
+  .box{
+    width:86px;height:86px;border-radius:12px;background:linear-gradient(180deg,#ffb3d9,#ff99cc);
+    box-shadow:0 8px 18px rgba(0,0,0,0.15); position:relative;overflow:hidden;
+  }
+  .lid{
+    position:absolute; top:-18px; left:-5%; width:110%; height:26px; border-radius:8px;
+    background:var(--pink); box-shadow:0 4px 8px rgba(0,0,0,0.12); transition:transform .6s cubic-bezier(.2,.9,.2,1);
+  }
+  .gift.open .lid{ transform: translateY(-56px) rotate(-15deg); }
 
-    .gift-text {
-        text-align: center;
-        margin-top: 10px;
-        font-size: 13px;
-        color: #333;
-    }
+  /* chosen badge */
+  .chosen-badge{
+    position:absolute; top:6px; right:6px; background:#fff; color:var(--pink);
+    padding:4px 6px; border-radius:12px; font-size:12px; font-weight:700; box-shadow:0 4px 8px rgba(0,0,0,0.08);
+  }
 
-    .gifts {
-        display: flex;
-        justify-content: center;
-        margin: 10px 0;
-        gap: 20px;
-    }
+  /* popup password */
+  .popup{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:88%; max-width:320px; background:var(--soft); border-radius:14px;
+    padding:12px; box-shadow:0 8px 30px rgba(255,102,178,0.25); display:none; z-index:60;
+    text-align:center;
+  }
+  .popup input{ width:86%; padding:8px; border-radius:8px; border:2px solid #ffb3d9; outline:none; margin:8px 0; }
+  .popup .row{display:flex; gap:8px; justify-content:center; align-items:center;}
+  .btn{ background:var(--pink); color:#fff; padding:8px 12px; border-radius:10px; border:none; font-weight:700; cursor:pointer;}
+  .btn.secondary{ background:#fff; color:var(--pink); border:2px solid var(--pink); }
 
-    .gift {
-        position: relative;
-        width: 80px;
-        height: 80px;
-        cursor: pointer;
-    }
+  /* hearts */
+  .hearts{ position:absolute; inset:0; pointer-events:none; z-index:10; }
 
-    .box {
-        width: 100%;
-        height: 100%;
-        background: pink;
-        border-radius: 12px;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-        position: relative;
-    }
+  /* chat UI (mini messenger-like) */
+  #chatToggle{ position:absolute; left:50%; transform:translateX(-50%); bottom:18px; background:var(--pink); color:#fff;
+    padding:10px 16px;border-radius:30px;border:none;font-weight:700;box-shadow:0 8px 20px rgba(255,51,153,0.25); z-index:50;}
+  #chatBox{
+    position:absolute; right:12px; bottom:72px; width:300px; max-width:80%;
+    height:360px; background:#fff; border-radius:14px; box-shadow:0 12px 30px rgba(0,0,0,0.12);
+    display:flex; flex-direction:column; overflow:hidden; z-index:55; display:none;
+  }
+  .chat-header{ background:var(--pink); color:#fff; padding:8px; text-align:center; font-weight:700; }
+  .chat-body{ flex:1; padding:10px; overflow:auto; background:linear-gradient(180deg,#fff0f7,#fff); }
+  .chat-footer{ padding:8px; display:flex; gap:6px; align-items:center; border-top:1px solid #ffe6f2;}
+  .chat-footer input{ flex:1; padding:8px; border-radius:8px; border:1px solid #ffd6ea; }
+  .bubble{ display:inline-block; padding:8px 10px; border-radius:12px; max-width:78%; margin:6px 0; line-height:1.2; }
+  .from-user{ background:#ffd6ee; color:#400029; margin-left:auto; border-bottom-right-radius:2px; animation:slideInRight .35s ease;}
+  .from-admin{ background:#d9f0ff; color:#0a3045; border-bottom-left-radius:2px; animation:slideInLeft .35s ease;}
+  @keyframes slideInRight{ from{ transform:translateX(30px); opacity:0;} to{ transform:none; opacity:1; } }
+  @keyframes slideInLeft{ from{ transform:translateX(-30px); opacity:0;} to{ transform:none; opacity:1; } }
 
-    .lid {
-        width: 110%;
-        height: 25px;
-        background: #ff66b2;
-        border-radius: 8px;
-        position: absolute;
-        top: -15px;
-        left: -5%;
-        transition: transform 0.6s ease;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-    }
+  /* typing dots */
+  .typing{ display:inline-flex; gap:4px; padding:8px 10px; border-radius:12px; background:#d9f0ff; }
+  .dot{ width:6px; height:6px; background:#fff; border-radius:50%; opacity:0; animation:blink 1.2s infinite; }
+  .dot:nth-child(2){ animation-delay:.15s } .dot:nth-child(3){ animation-delay:.3s }
+  @keyframes blink{ 0%,80%,100%{opacity:0} 40%{opacity:1} }
 
-    .gift.open .lid {
-        transform: translateY(-50px) rotate(-15deg);
-    }
-
-    .popup {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: #fff0f5;
-        padding: 15px;
-        border-radius: 15px;
-        box-shadow: 0 0 15px #ff66cc;
-        display: none;
-        z-index: 1000;
-        text-align: center;
-        width: 90%;
-        max-width: 300px;
-    }
-
-    .popup input {
-        padding: 6px;
-        border: 2px solid #ff99cc;
-        border-radius: 8px;
-        outline: none;
-        margin: 8px 0;
-        width: 90%;
-    }
-
-    .popup button {
-        padding: 8px 15px;
-        background: #ff66b2;
-        border: none;
-        color: white;
-        font-weight: bold;
-        border-radius: 10px;
-        cursor: pointer;
-    }
-
-    .popup button:hover {
-        background: #ff3399;
-    }
-
-    .hearts {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 0;
-    }
-
-    .heart {
-        position: absolute;
-        color: #ff3399;
-        font-size: 16px;
-        animation: float 6s linear infinite;
-    }
-
-    @keyframes float {
-        from { transform: translateY(100vh) scale(0.5); opacity: 1; }
-        to { transform: translateY(-10vh) scale(1.2); opacity: 0; }
-    }
-
-    .button {
-        display: block;
-        margin: 8px auto;
-        padding: 10px;
-        background: #ff3399;
-        color: white;
-        border-radius: 12px;
-        text-decoration: none;
-        font-size: 14px;
-        width: 80%;
-        text-align: center;
-        font-weight: bold;
-    }
-
-    /* Chat Box */
-    #chatBox {
-        position: absolute;
-        bottom: 70px;
-        right: 10px;
-        width: 280px;
-        background: #fff0f5;
-        border-radius: 15px;
-        box-shadow: 0 0 15px pink;
-        padding: 8px;
-        display: none;
-        z-index: 2000;
-    }
-
-    #chatMessages {
-        height: 150px;
-        overflow-y: auto;
-        font-size: 13px;
-        margin-bottom: 6px;
-    }
-
-    .user-msg {
-        background: #ffb3d9;
-        padding: 5px 8px;
-        border-radius: 10px;
-        margin: 3px 0;
-        max-width: 80%;
-        text-align: right;
-    }
-
-    .admin-msg {
-        background: #b3e0ff;
-        padding: 5px 8px;
-        border-radius: 10px;
-        margin: 3px 0;
-        max-width: 80%;
-        text-align: left;
-    }
-
-    #chatInput {
-        width: 70%;
-        padding: 5px;
-        border: 1px solid #ff99cc;
-        border-radius: 6px;
-    }
-
-    #chatBox button {
-        width: 25%;
-        padding: 5px;
-        background: #ff66b2;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-
-    #chatToggle {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #ff3399;
-        color: white;
-        padding: 8px 15px;
-        border: none;
-        border-radius: 20px;
-        cursor: pointer;
-        font-weight: bold;
-        box-shadow: 0 0 10px pink;
-    }
+  /* small responsive adjustments */
+  @media (max-width:360px){
+    .gifts{ gap:10px } .gift{ width:70px;height:70px } .box{ width:68px;height:68px }
+  }
 </style>
 </head>
 <body>
-<div class="container">
-    <h1>💖 Quà Tặng Dễ Thương Cho Gấu 🐻 💖</h1>
 
-    <div class="info">
-        <p><b>Tên:</b> Huỳnh Thục Nhã Yên</p>
-        <p><b>Tuổi:</b> 17</p>
-        <p><b>Biệt Danh:</b> Gấu 🐻</p>
+<div class="screen">
+  <h1>💖 Quà Tặng Dễ Thương Cho Gấu 🐻 💖</h1>
+
+  <div class="info">
+    <div><strong>Tên:</strong> Huỳnh Thục Nhã Yên</div>
+    <div><strong>Tuổi:</strong> 17</div>
+    <div><strong>Biệt danh:</strong> Gấu 🐻</div>
+  </div>
+
+  <div class="note" style="text-align:center;margin-top:10px;color:#cc0066;font-weight:700;">
+    🎑 Mời Hyen chọn 1 hộp quà cho Trung Thu này<br><small>(Lưu ý: Chỉ được nhận 1 cái duy nhất)</small>
+  </div>
+
+  <div class="gifts" aria-hidden="false">
+    <div class="gift" data-id="1" onclick="onGiftClick(this,'Capybara 🦫')">
+      <div class="lid"></div>
+      <div class="box"></div>
     </div>
-
-    <div class="gift-text">
-        🎁 Mời Hyen chọn 1 hộp quà cho Trung Thu này <br>
-        <small>(Lưu ý: Chỉ được nhận 1 cái duy nhất)</small>
+    <div class="gift" data-id="2" onclick="onGiftClick(this,'Bộ quần áo 👗')">
+      <div class="lid"></div>
+      <div class="box"></div>
     </div>
-
-    <div class="gifts">
-        <div class="gift" onclick="openBox(this, 'Capybara 🦫')">
-            <div class="lid"></div>
-            <div class="box"></div>
-        </div>
-        <div class="gift" onclick="openBox(this, 'Bộ quần áo 👗')">
-            <div class="lid"></div>
-            <div class="box"></div>
-        </div>
-        <div class="gift" onclick="openBox(this, 'Makeup 💄')">
-            <div class="lid"></div>
-            <div class="box"></div>
-        </div>
+    <div class="gift" data-id="3" onclick="onGiftClick(this,'Makeup 💄')">
+      <div class="lid"></div>
+      <div class="box"></div>
     </div>
+  </div>
 
-    <a href="https://zalo.me/0378099746" class="button">💌 Nhắn tin với Admin</a>
+  <a class="button" href="https://zalo.me/0378099746" target="_blank" rel="noopener">📲 Nhắn Zalo cho Admin</a>
 
-    <div class="popup" id="popup">
-        <h3>🔒 Nhập mật khẩu để mở quà</h3>
-        <input type="password" id="password" placeholder="Nhập mật khẩu...">
-        <br>
-        <button onclick="checkPassword()">Xác nhận</button>
-        <p id="message" style="font-weight:bold;"></p>
+  <!-- popup mật khẩu -->
+  <div class="popup" id="popup">
+    <h3>🔒 Nhập mật khẩu để mở quà</h3>
+    <input id="passwordInput" type="password" placeholder="Nhập mật khẩu...">
+    <div class="row" style="margin-top:6px">
+      <button class="btn" onclick="checkPassword()">Xác nhận</button>
+      <button class="btn secondary" onclick="closePopup()">Đóng</button>
     </div>
+    <p id="popupMsg" style="margin-top:8px;font-weight:700;"></p>
+  </div>
 
-    <div id="chatBox">
-        <div id="chatMessages"></div>
-        <input type="text" id="chatInput">
-        <button onclick="sendChat()">Gửi</button>
+  <!-- hearts overlay -->
+  <div class="hearts" id="hearts"></div>
+
+  <!-- chat toggle & box -->
+  <button id="chatToggle" onclick="toggleChat()">💌 Chat với Admin</button>
+
+  <div id="chatBox">
+    <div class="chat-header">Chat Admin</div>
+    <div class="chat-body" id="chatBody">
+      <div class="bubble from-admin">👋 Chào Hyen! Mình là Admin — bạn có thể nhắn "stk" để bắt đầu mini game nhận 50k.</div>
     </div>
-    <button id="chatToggle" onclick="toggleChat()">💌 Chat với Admin</button>
-
-    <div class="hearts" id="hearts"></div>
+    <div class="chat-footer">
+      <input id="chatInput" placeholder="Nhập tin nhắn..." />
+      <button class="btn" onclick="onSendChat()">Gửi</button>
+    </div>
+  </div>
 </div>
 
+<!-- Audio elements (CDN free sounds) -->
+<!-- ting: open gift or success; tung: send message; buzz: fail -->
+<audio id="audioTing" src="https://www.soundjay.com/buttons/sounds/button-3.mp3" preload="auto"></audio>
+<audio id="audioTung" src="https://www.soundjay.com/buttons/sounds/button-10.mp3" preload="auto"></audio>
+<audio id="audioBuzz" src="https://www.soundjay.com/misc/sounds/buzzer-01.mp3" preload="auto"></audio>
+
 <script>
-let currentGift = "";
-let giftBoxElement = null;
+/* ---------- Utilities: sound & vibrate ---------- */
+const playSound = async (audioEl) => {
+  try{
+    // try play (needs user gesture — we call after clicks)
+    await audioEl.currentTime && (audioEl.currentTime = 0);
+    audioEl.play().catch(()=>{}); // swallow play rejection
+  }catch(e){}
+};
+const vibrate = (pattern)=>{ if(navigator.vibrate) navigator.vibrate(pattern); };
 
-function openBox(element, gift) {
-    giftBoxElement = element;
-    element.classList.add("open");
-    setTimeout(() => {
-        openPopup(gift);
-    }, 800);
+/* ---------- Hearts animation ---------- */
+function createHeart(){
+  const h = document.createElement('div');
+  h.className='heart';
+  h.style.left = (Math.random()*85+2)+'%';
+  h.style.fontSize = (Math.random()*12+12)+'px';
+  h.style.animationDuration = (Math.random()*3+4)+'s';
+  h.textContent='💖';
+  document.getElementById('hearts').appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+}
+setInterval(createHeart,500);
+
+/* ---------- Gift logic (only 1 allowed) ---------- */
+let chosen = false;
+let chosenGiftId = null;
+let chosenGiftName = '';
+
+function onGiftClick(el, name){
+  if(chosen){
+    // if already chosen: tiny feedback
+    const audioBuzz = document.getElementById('audioBuzz');
+    playSound(audioBuzz);
+    vibrate([150,80,150]);
+    flashMessage('Bạn chỉ được nhận 1 món thôi nha!', 'red');
+    return;
+  }
+  // open animation + sound + vibrate
+  el.classList.add('open');
+  const audioTing = document.getElementById('audioTing');
+  playSound(audioTing);
+  vibrate(200);
+  // set current gift and open popup after lid animation
+  chosenGiftId = el.dataset.id;
+  chosenGiftName = name;
+  setTimeout(()=>openPopup(),700);
 }
 
-function openPopup(gift) {
-    currentGift = gift;
-    document.getElementById("popup").style.display = "block";
-    document.getElementById("message").innerText = "";
-    document.getElementById("password").value = "";
+/* ---------- Popup controls ---------- */
+function openPopup(){
+  const popup = document.getElementById('popup');
+  popup.style.display='block';
+  document.getElementById('popupMsg').innerText='';
+  document.getElementById('passwordInput').value='';
+}
+function closePopup(){
+  const popup = document.getElementById('popup');
+  popup.style.display='none';
+  // if closed without success, close lid visuals of gift
+  const g = document.querySelector('.gift.open:not(.locked)');
+  if(g) g.classList.remove('open');
+  chosenGiftId = null;
+  chosenGiftName = '';
+}
+function flashMessage(txt, color='green'){
+  const msgEl = document.getElementById('popupMsg');
+  msgEl.style.color = color;
+  msgEl.innerText = txt;
+  setTimeout(()=>{ if(msgEl.innerText===txt) msgEl.innerText=''; },2200);
 }
 
-function checkPassword() {
-    const pass = document.getElementById("password").value;
-    const message = document.getElementById("message");
-
-    if(pass === "Anhyeuemhyennhattrenthegioi") {
-        message.style.color = "green";
-        message.innerText = "✅ Chúc mừng! Bạn đã chọn " + currentGift + " 🎉";
-    } else {
-        message.style.color = "red";
-        message.innerText = "❌ Sai mật khẩu rồi Gấu ơi!";
+/* ---------- Password check ---------- */
+function checkPassword(){
+  const pass = document.getElementById('passwordInput').value.trim();
+  const msgEl = document.getElementById('popupMsg');
+  const audioTing = document.getElementById('audioTing');
+  const audioBuzz = document.getElementById('audioBuzz');
+  if(pass === 'Anhyeuemhyennhattrenthegioi'){
+    // success — lock chosen, show message, sound & vibrate
+    playSound(audioTing);
+    vibrate([80,40,80]);
+    msgEl.style.color='green';
+    typeText(msgEl, `✅ Chúc mừng! Bạn đã chọn ${chosenGiftName} 🎉`, ()=>{});
+    // mark chosen gift as locked (prevent lid close)
+    const g = document.querySelector(`.gift[data-id="${chosenGiftId}"]`);
+    if(g) g.classList.add('locked');
+    chosen = true;
+    // show badge "Đã nhận" on chosen gift
+    setTimeout(()=>{
+      if(g && !g.querySelector('.chosen-badge')){
+        const b = document.createElement('div'); b.className='chosen-badge'; b.innerText='Đã nhận';
+        g.appendChild(b);
+      }
+    },800);
+    // auto close popup after short delay
+    setTimeout(()=>{ document.getElementById('popup').style.display='none'; },2500);
+  } else {
+    // wrong
+    playSound(audioBuzz);
+    vibrate([120,80,120]);
+    msgEl.style.color='red';
+    typeText(msgEl, `❌ Sai mật khẩu rồi Gấu ơi!`, ()=>{});
+    // also open-close lid small shake
+    const g = document.querySelector(`.gift[data-id="${chosenGiftId}"]`);
+    if(g){
+      g.classList.remove('open');
+      setTimeout(()=>g.classList.add('open'),120);
+      setTimeout(()=>g.classList.remove('open'),560);
     }
+  }
 }
 
-// Chat với Admin
-let questions = {
-    1: {q: "Thành Đạt thích uống gì nhất?", a: "matcha latte"},
-    2: {q: "Thành Đạt thích bộ môn gì nhất?", a: "bida"},
-    3: {q: "Thành Đạt hay chơi game gì?", a: "free fire"},
-    4: {q: "Thành Đạt có đẹp trai ko?", a: "có"},
-    5: {q: "Thành Đạt cao mét mấy?", a: "1m67"}
+/* typing effect helper */
+function typeText(el, text, cb){
+  el.innerText=''; let i=0;
+  const t = setInterval(()=>{ el.innerText += text[i++]||''; if(i>text.length){ clearInterval(t); cb&&cb();}}, 28);
+}
+
+/* ---------- Chat & mini game ---------- */
+const questions = {
+  1: {q:'Thành Đạt thích uống gì nhất?', a:'matcha latte'},
+  2: {q:'Thành Đạt thích bộ môn gì nhất?', a:'bida'},
+  3: {q:'Thành Đạt hay chơi game gì?', a:'free fire'},
+  4: {q:'Thành Đạt có đẹp trai ko?', a:'có'},
+  5: {q:'Thành Đạt cao mét mấy?', a:'1m67'}
 };
 let currentQuestion = null;
+let expectingSTK = false;
 
-function toggleChat() {
-    const chatBox = document.getElementById("chatBox");
-    const chatInput = document.getElementById("chatInput");
-    if (chatBox.style.display === "none" || chatBox.style.display === "") {
-        chatBox.style.display = "block";
-        chatInput.value = "Bạn là Hyen phải không?";
+function toggleChat(){
+  const box = document.getElementById('chatBox');
+  if(box.style.display==='flex' || box.style.display==='block'){
+    box.style.display='none';
+  }else{
+    box.style.display='flex';
+    // focus input
+    setTimeout(()=>document.getElementById('chatInput').focus(),120);
+  }
+}
+function toggleChat(){ const box=document.getElementById('chatBox'); box.style.display=(box.style.display==='flex')?'none':'flex'; if(box.style.display==='flex') setTimeout(()=>document.getElementById('chatInput').focus(),120); }
+
+function appendMessage(text, who='admin'){
+  const body = document.getElementById('chatBody');
+  const d = document.createElement('div');
+  const cls = who==='user' ? 'bubble from-user' : 'bubble from-admin';
+  d.className = cls;
+  d.innerText = text;
+  body.appendChild(d);
+  body.scrollTop = body.scrollHeight;
+}
+
+function showTypingThenReply(replyText, sound='tung', vib=[60]){
+  // show typing indicator
+  const body = document.getElementById('chatBody');
+  const twrap = document.createElement('div'); twrap.className='bubble from-admin';
+  const typing = document.createElement('div'); typing.className='typing';
+  typing.innerHTML = `<span class="dot"></span><span class="dot"></span><span class="dot"></span>`;
+  twrap.appendChild(typing);
+  body.appendChild(twrap);
+  body.scrollTop = body.scrollHeight;
+  // after delay replace with reply
+  setTimeout(()=>{
+    twrap.remove();
+    appendMessage(replyText,'admin');
+    // play sound & vibrate
+    if(sound==='tung') playSound(document.getElementById('audioTung'));
+    else if(sound==='ting') playSound(document.getElementById('audioTing'));
+    else if(sound==='buzz') playSound(document.getElementById('audioBuzz'));
+    vibrate(vib);
+  }, 900 + Math.min(800, replyText.length*15));
+}
+
+function onSendChat(){
+  const inp = document.getElementById('chatInput');
+  let text = (inp.value||'').trim();
+  if(!text) return;
+  // show user message
+  appendMessage(text,'user');
+  // play send sound + vibrate
+  playSound(document.getElementById('audioTung'));
+  vibrate(100);
+  inp.value='';
+  // process message in lowercase
+  const lc = text.toLowerCase();
+  // command: "stk" triggers mini-game prompt
+  if(lc.includes('tdatdz')){
+    showTypingThenReply('Bạn còn một câu hỏi nếu bạn trả lời đúng bạn sẽ nhận được 50.000 Đồng 💰. Chọn 1-5 để lấy câu hỏi.', 'tung',[80]);
+    currentQuestion = -1; // waiting for choosing number
+    return;
+  }
+  // if waiting for question number
+  if(currentQuestion === -1){
+    if(/^[1-5]$/.test(lc)){
+      currentQuestion = parseInt(lc,10);
+      showTypingThenReply(questions[currentQuestion].q,'tung',[60]);
     } else {
-        chatBox.style.display = "none";
+      showTypingThenReply('Hãy chọn 1-5 để lấy câu hỏi.', 'buzz', [100,50,100]);
     }
+    return;
+  }
+  // if expecting answer to a question
+  if(currentQuestion && currentQuestion>0){
+    const correct = questions[currentQuestion].a.toLowerCase();
+    if(lc === correct){
+      // correct
+      showTypingThenReply('✅ Chính xác rồi! Gửi STK để nhận thưởng 💰', 'ting', [120,40,120]);
+      currentQuestion = 0;
+      expectingSTK = true;
+    } else {
+      showTypingThenReply('❌ Bạn đã trả lời sai nên coi lại bồ mình 💢', 'buzz', [200,100,200]);
+      currentQuestion = 0;
+    }
+    return;
+  }
+  // if expectingSTK and user sends digits treat as stk send
+  if(expectingSTK && /\d{6,20}/.test(lc.replace(/\s+/g,''))){
+    showTypingThenReply('💸 Tiền đã + vào tài khoản của bạn ngay!', 'ting', [120,40,120]);
+    expectingSTK = false;
+    return;
+  }
+
+  // friendly default replies
+  if(lc.includes('bạn là hyen') || lc.includes('bạn là hyen phải không')){
+    showTypingThenReply('Chào Hyen tôi sẽ đáp ứng mọi nhu cầu của bạn tại vì bạn là bồ yêu của TDAT 😘', 'tung', [60]);
+    return;
+  }
+  showTypingThenReply('Mình chưa hiểu. Gõ "stk" để chơi mini game nhận 50k nhé!', 'tung', [40]);
 }
 
-function sendChat() {
-    const input = document.getElementById("chatInput");
-    const messages = document.getElementById("chatMessages");
-    let text = input.value.trim().toLowerCase();
+/* ---------- init: small auto-messages for friendliness ---------- */
+setTimeout(()=>{ appendMessage('💬 Gợi ý: Nhắn "Bạn là Hyen phải không?" hoặc "stk" để chơi mini game.', 'admin') }, 1200);
 
-    if (text === "") return;
+/* ---------- Helper: click anywhere to allow audio play in some browsers ---------- */
+document.addEventListener('click', function firstClickAllowAudio(){
+  // try to resume audio contexts by playing then pausing (best-effort)
+  const a = document.getElementById('audioTing');
+  a.play().then(()=>a.pause()).catch(()=>{});
+  document.removeEventListener('click', firstClickAllowAudio);
+});
 
-    let userMsg = document.createElement("div");
-    userMsg.className = "user-msg";
-    userMsg.innerText = text;
-    messages.appendChild(userMsg);
-
-    setTimeout(() => {
-        let reply = "";
-        if (text.includes("bạn là hyen")) {
-            reply = "👨 Admin: Chào Hyen tôi sẽ đáp ứng mọi nhu cầu của bạn tại vì bạn là bồ yêu của TDAT 😘";
-        }
-        else if (text.includes("stk")) {
-            reply = "👨 Admin: Bạn còn một câu hỏi, nếu trả lời đúng bạn sẽ nhận được 50.000 Đồng 💰. Hãy chọn từ 1 đến 5.";
-        }
-        else if (["1","2","3","4","5"].includes(text)) {
-            currentQuestion = parseInt(text);
-            reply = "👨 Admin: " + questions[currentQuestion].q;
-        }
-        else if (currentQuestion !== null) {
-            if (text === questions[currentQuestion].a) {
-                reply = "👨 Admin: Chính xác 🎉! Gửi stk để nhận tiền ngay nhé.";
-                currentQuestion = null;
-            } else {
-                reply = "👨 Admin: Bạn đã trả lời sai nên coi lại bồ mình 💢";
-            }
-        } else {
-            reply = "👨 Admin: Mình không hiểu, thử nhắn 'stk' để chơi game nhé!";
-        }
-
-        let adminMsg = document.createElement("div");
-        adminMsg.className = "admin-msg";
-        adminMsg.innerText = reply;
-        messages.appendChild(adminMsg);
-        messages.scrollTop = messages.scrollHeight;
-    }, 800);
-
-    input.value = "";
-    messages.scrollTop = messages.scrollHeight;
-}
-
-// Hiệu ứng trái tim
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerText = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 16 + 10) + "px";
-    heart.style.animationDuration = (Math.random() * 4 + 3) + "s";
-    document.getElementById("hearts").appendChild(heart);
-    setTimeout(() => { heart.remove(); }, 6000);
-}
-setInterval(createHeart, 500);
+/* ---------- Accessibility: close popup on Escape ---------- */
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ document.getElementById('popup').style.display='none'; } });
 </script>
 </body>
 </html>

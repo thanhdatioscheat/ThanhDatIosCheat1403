@@ -3,261 +3,242 @@
 <head>
 <meta charset="UTF-8">
 <title>🎁 Quà Dễ Thương Tặng Gấu 🐻</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
     body {
         margin: 0;
-        font-family: "Comic Sans MS", cursive, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #ffb6d9;
+        font-family: "Poppins", sans-serif;
+    }
+
+    /* Khung điện thoại */
+    .phone {
+        width: 360px;
+        height: 640px;
         background: #ffe6f2;
-        overflow-x: hidden;
-        text-align: center;
+        border-radius: 35px;
+        box-shadow: 0 0 40px rgba(0,0,0,0.3);
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     h1 {
-        margin-top: 20px;
-        color: #ff3399;
-        text-shadow: 2px 2px #fff;
+        margin: 15px 0;
+        font-family: "Pacifico", cursive;
+        font-size: 22px;
+        text-align: center;
+        background: linear-gradient(45deg, #ff3399, #ff66cc, #ff99ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         animation: glow 2s infinite alternate;
     }
+
     @keyframes glow {
-        from { text-shadow: 0 0 5px #fff, 0 0 10px #ff66b2; }
-        to { text-shadow: 0 0 20px #ff3399, 0 0 30px #ff99cc; }
+        from { text-shadow: 0 0 5px #fff; }
+        to { text-shadow: 0 0 15px #ff99cc; }
     }
 
     .info {
-        margin: 15px;
+        margin: 10px;
         background: #fff0f5;
-        padding: 10px;
+        padding: 8px;
         border-radius: 15px;
-        display: inline-block;
-        font-size: 18px;
+        font-size: 14px;
+        font-weight: 600;
         color: #cc0066;
-        box-shadow: 0 0 10px pink;
+        box-shadow: 0 0 8px pink;
+        width: 80%;
     }
 
     .gifts {
         display: flex;
         justify-content: center;
-        margin-top: 30px;
-        gap: 40px;
+        margin-top: 20px;
+        gap: 20px;
+        flex-wrap: wrap;
     }
+
     .gift {
         position: relative;
-        width: 150px;
-        height: 150px;
+        width: 100px;
+        height: 100px;
         cursor: pointer;
     }
+
     .box {
         width: 100%;
         height: 100%;
         background: pink;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        position: relative;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
+
     .lid {
         width: 110%;
-        height: 40px;
+        height: 30px;
         background: #ff66b2;
         border-radius: 10px;
         position: absolute;
-        top: -20px;
+        top: -15px;
         left: -5%;
         transition: transform 0.6s ease;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
     }
+
     .gift:hover .lid {
         transform: rotate(-5deg);
     }
+
     .gift.open .lid {
-        transform: translateY(-80px) rotate(-15deg);
+        transform: translateY(-60px) rotate(-15deg);
     }
 
     .popup {
-        position: fixed;
+        position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         background: #fff0f5;
-        padding: 20px;
+        padding: 15px;
         border-radius: 20px;
-        box-shadow: 0 0 20px #ff66cc;
+        box-shadow: 0 0 15px #ff66cc;
         display: none;
         z-index: 1000;
         text-align: center;
+        width: 80%;
     }
+
+    .popup h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
     .popup input {
-        padding: 10px;
+        padding: 8px;
         border: 2px solid #ff99cc;
-        border-radius: 10px;
+        border-radius: 8px;
         outline: none;
-        margin: 10px 0;
+        width: 80%;
+        margin-bottom: 8px;
     }
+
     .popup button {
-        padding: 10px 20px;
+        padding: 8px 15px;
         background: #ff66b2;
         border: none;
         color: white;
         font-weight: bold;
         border-radius: 10px;
         cursor: pointer;
-        transition: 0.3s;
-    }
-    .popup button:hover {
-        background: #ff3399;
+        font-size: 14px;
     }
 
-    .hearts {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 0;
+    .popup #message {
+        margin-top: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        min-height: 20px;
     }
-    .heart {
+
+    /* Chat + Zalo */
+    .chat-btn, .zalo-btn {
         position: absolute;
-        color: #ff3399;
-        font-size: 20px;
-        animation: float 6s linear infinite;
-    }
-    @keyframes float {
-        from { transform: translateY(100vh) scale(0.5); opacity: 1; }
-        to { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        bottom: 15px;
+        background: #ff66b2;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 0 8px pink;
     }
 
-    /* Chat style */
-    @keyframes slideInRight {
-        from { transform: translateX(50px); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
+    .zalo-btn {
+        left: 15px;
+        background: #0068ff;
     }
-    @keyframes slideInLeft {
-        from { transform: translateX(-50px); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
+
+    .chat-btn {
+        right: 15px;
     }
-    .user-msg {
-        background:#ff99cc;
-        color:#fff;
-        padding:8px 12px;
-        border-radius:15px;
-        margin:5px;
-        display:inline-block;
-        max-width:70%;
-        float:right;
-        clear:both;
-        box-shadow:0 0 8px #ffb6d9;
-        animation: slideInRight 0.4s ease;
+
+    .chat-popup {
+        position: absolute;
+        bottom: 60px;
+        right: 10px;
+        background: #fff;
+        border: 2px solid #ff66b2;
+        border-radius: 12px;
+        box-shadow: 0 0 10px pink;
+        display: none;
+        padding: 10px;
+        width: 220px;
+        font-size: 13px;
+        text-align: left;
     }
-    .admin-msg {
-        background:#66b3ff;
-        color:#fff;
-        padding:8px 12px;
-        border-radius:15px;
-        margin:5px;
-        display:inline-block;
-        max-width:70%;
-        float:left;
-        clear:both;
-        box-shadow:0 0 8px #99d1ff;
-        animation: slideInLeft 0.4s ease;
-    }
-    .typing {
-        background:#66b3ff;
-        color:white;
-        padding:8px 12px;
-        border-radius:15px;
-        margin:5px;
-        display:inline-block;
-        max-width:40px;
-        float:left;
-        clear:both;
-        box-shadow:0 0 8px #99d1ff;
-        animation: slideInLeft 0.3s ease;
-    }
-    .dot {
-        display:inline-block;
-        width:6px;
-        height:6px;
-        margin:0 2px;
-        background:white;
-        border-radius:50%;
-        animation: blink 1.2s infinite;
-    }
-    .dot:nth-child(2) { animation-delay: 0.2s; }
-    .dot:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes blink {
-        0%, 80%, 100% { opacity: 0; }
-        40% { opacity: 1; }
+
+    .chat-popup button {
+        margin-top: 5px;
+        background: #ff66b2;
+        border: none;
+        padding: 6px 12px;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 12px;
     }
 </style>
 </head>
 <body>
 
-<h1>💖 Quà Tặng Dễ Thương Cho Gấu 🐻 💖</h1>
+<div class="phone">
+    <h1>💖 Quà Tặng Dễ Thương Cho Gấu 🐻</h1>
 
-<div class="info">
-    <p><b>Tên:</b> Huỳnh Thục Nhã Yên</p>
-    <p><b>Tuổi:</b> 17</p>
-    <p><b>Biệt Danh:</b> Gấu 🐻</p>
-</div>
-
-<div class="gifts">
-    <div class="gift" onclick="openBox(this, 'Capybara 🦫')">
-        <div class="lid"></div>
-        <div class="box"></div>
+    <div class="info">
+        <p><b>Tên:</b> Huỳnh Thục Nhã Yên</p>
+        <p><b>Tuổi:</b> 17</p>
+        <p><b>Biệt Danh:</b> Gấu 🐻</p>
     </div>
-    <div class="gift" onclick="openBox(this, 'Bộ quần áo 👗')">
-        <div class="lid"></div>
-        <div class="box"></div>
+
+    <div class="gifts">
+        <div class="gift" onclick="openBox(this, 'Capybara 🦫')">
+            <div class="lid"></div>
+            <div class="box"></div>
+        </div>
+        <div class="gift" onclick="openBox(this, 'Bộ quần áo 👗')">
+            <div class="lid"></div>
+            <div class="box"></div>
+        </div>
+        <div class="gift" onclick="openBox(this, 'Makeup 💄')">
+            <div class="lid"></div>
+            <div class="box"></div>
+        </div>
     </div>
-    <div class="gift" onclick="openBox(this, 'Makeup 💄')">
-        <div class="lid"></div>
-        <div class="box"></div>
+
+    <div class="popup" id="popup">
+        <h3>🔒 Nhập mật khẩu để mở quà</h3>
+        <input type="password" id="password" placeholder="Nhập mật khẩu...">
+        <br>
+        <button onclick="checkPassword()">Xác nhận</button>
+        <p id="message"></p>
+    </div>
+
+    <div class="chat-btn" onclick="toggleChat()">💬 Chat</div>
+    <div class="zalo-btn" onclick="window.open('https://zalo.me/0378099746','_blank')">📲 Zalo</div>
+
+    <div class="chat-popup" id="chatPopup">
+        <p>👉 Bạn có phải là Hyen không?</p>
+        <button onclick="sendChat()">Gửi</button>
     </div>
 </div>
-
-<div class="popup" id="popup">
-    <h3>🔒 Nhập mật khẩu để mở quà</h3>
-    <input type="password" id="password" placeholder="Nhập mật khẩu...">
-    <br>
-    <button onclick="checkPassword()">Xác nhận</button>
-    <p id="message" style="color:red; font-weight:bold;"></p>
-</div>
-
-<!-- Nút nhắn tin zalo -->
-<div style="margin-top:20px;">
-    <a href="https://zalo.me/0378099746" target="_blank" 
-       style="display:inline-block; background:#0084ff; color:white; 
-              padding:12px 20px; border-radius:10px; text-decoration:none; 
-              font-weight:bold; box-shadow:0 0 10px #66b3ff;">
-        💬 Nhắn tin Admin qua Zalo
-    </a>
-</div>
-
-<!-- Chat mini -->
-<div id="chatBox" style="position:fixed; bottom:20px; right:20px; width:280px; 
-                        background:#fff0f5; border-radius:15px; box-shadow:0 0 15px pink; 
-                        padding:10px; display:none; z-index:2000;">
-    <div id="chatMessages" style="height:180px; overflow-y:auto; 
-                                  font-size:14px; padding:5px;"></div>
-    <input type="text" id="chatInput" 
-           style="width:70%; padding:6px; border:1px solid #ff99cc; border-radius:8px;">
-    <button onclick="sendChat()" 
-            style="width:25%; padding:6px; background:#ff66b2; color:white; border:none; 
-                   border-radius:8px; cursor:pointer;">Gửi</button>
-</div>
-
-<button onclick="toggleChat()" 
-        style="position:fixed; bottom:20px; left:20px; background:#ff3399; color:white; 
-               padding:12px 20px; border:none; border-radius:50px; cursor:pointer; 
-               font-weight:bold; box-shadow:0 0 15px pink; z-index:2000;">
-    💌 Chat với Admin
-</button>
-
-<!-- Âm thanh ting ting -->
-<audio id="tingSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3" preload="auto"></audio>
-
-<div class="hearts" id="hearts"></div>
 
 <script>
     let currentGift = "";
@@ -268,7 +249,7 @@
         element.classList.add("open");
         setTimeout(() => {
             openPopup(gift);
-        }, 800);
+        }, 600);
     }
 
     function openPopup(gift) {
@@ -281,7 +262,6 @@
     function checkPassword() {
         const pass = document.getElementById("password").value;
         const message = document.getElementById("message");
-
         if(pass === "Anhyeuemhyennhattrenthegioi") {
             message.style.color = "green";
             message.innerText = "✅ Chúc mừng! Bạn đã chọn " + currentGift + " 🎉";
@@ -291,65 +271,13 @@
         }
     }
 
-    // Hiệu ứng trái tim bay
-    function createHeart() {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerText = "💖";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-        heart.style.animationDuration = (Math.random() * 4 + 3) + "s";
-        document.getElementById("hearts").appendChild(heart);
-        setTimeout(() => { heart.remove(); }, 6000);
-    }
-    setInterval(createHeart, 500);
-
-    // Chat box
     function toggleChat() {
-        const chatBox = document.getElementById("chatBox");
-        const chatInput = document.getElementById("chatInput");
-
-        if (chatBox.style.display === "none" || chatBox.style.display === "") {
-            chatBox.style.display = "block";
-            chatInput.value = "Bạn là Hyen phải không?";
-        } else {
-            chatBox.style.display = "none";
-        }
+        const chat = document.getElementById("chatPopup");
+        chat.style.display = (chat.style.display === "block") ? "none" : "block";
     }
 
     function sendChat() {
-        const input = document.getElementById("chatInput");
-        const messages = document.getElementById("chatMessages");
-        const ting = document.getElementById("tingSound");
-
-        if(input.value.trim() !== "") {
-            let userMsg = document.createElement("div");
-            userMsg.classList.add("user-msg");
-            userMsg.innerText = input.value;
-            messages.appendChild(userMsg);
-
-            // Hiện typing
-            let typingMsg = document.createElement("div");
-            typingMsg.classList.add("typing");
-            typingMsg.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
-            messages.appendChild(typingMsg);
-            messages.scrollTop = messages.scrollHeight;
-
-            setTimeout(() => {
-                typingMsg.remove();
-
-                let adminMsg = document.createElement("div");
-                adminMsg.classList.add("admin-msg");
-                adminMsg.innerText = "Chào Hyen tôi sẽ đáp ứng mọi nhu cầu của bạn tại vì bạn là bồ yêu của TDAT 😘";
-                messages.appendChild(adminMsg);
-
-                ting.play();
-                messages.scrollTop = messages.scrollHeight;
-            }, 1200);
-
-            input.value = "";
-            messages.scrollTop = messages.scrollHeight;
-        }
+        alert("👨 Admin: Chào Hyen! Tôi sẽ đáp ứng mọi nhu cầu của bạn vì bạn là bồ yêu của TDAT 😘");
     }
 </script>
 
